@@ -1,6 +1,6 @@
 <template>
-  <div class="container max-w-6xl mx-auto px-6 mt-32">
-    <div class="flex flex-col space-y-3 text-center">
+  <section id="team" class="container max-w-6xl mx-auto px-6 pt-32">
+    <div class="flex flex-col space-y-3 text-center" data-aos="fade-up">
       <h2 class="font-agdasima text-white text-5xl capitalize">our team</h2>
       <p class="text-grey max-w-lg mx-auto">
         Our talented team combines creativity and expertise to deliver
@@ -10,9 +10,9 @@
       </p>
     </div>
     <div
-      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 my-32 place-items-center"
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 gap-y-24 md:gap-y-20 my-24 place-items-center"
     >
-      <div
+      <div data-aos="flip-left"
         class="relative h-[275px] w-[175px]"
         v-for="person in people"
         :key="person.id"
@@ -21,7 +21,7 @@
         <img
           :src="person.image"
           :alt="person.fullname"
-          class="absolute bottom-1 right-6 object-cover h-[225px] w-[150px] hover:scale-105 duration-200"
+          class="absolute bottom-0 right-6 object-cover h-[225px] w-[150px] hover:scale-105 duration-200"
         />
         <h3 class="text-white font-agdasima text-2xl pt-2">
           {{ person.name }}
@@ -29,7 +29,7 @@
         <p class="text-grey">{{ person.role }}</p>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

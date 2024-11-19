@@ -2,7 +2,7 @@
   <div
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center"
   >
-    <div
+    <div data-aos="flip-left"
       class="bg-darkLight rounded-lg flex flex-col p-4 overflow-hidden"
       v-for="collection in collections"
       :key="collection.id"
@@ -10,7 +10,7 @@
       <img
         :src="collection.image"
         :alt="collection.title"
-        class="object-cover rounded-lg h-[400px] hover:scale-110 duration-300 cursor-pointer"
+        class="object-cover rounded-lg h-[400px] hover:scale-110 hover:rounded-b-none duration-300 cursor-pointer"
       />
       <div class="flex justify-between items-center pt-4">
         <div class="flex flex-col text-left space-y-2">

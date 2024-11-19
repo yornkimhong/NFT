@@ -1,16 +1,16 @@
 <template>
-  <div class="relative overflow-hidden">
-    <div class="container max-w-6xl mx-auto px-6 pt-32">
+  <section id="about" class="relative overflow-hidden pt-32">
+    <div class="container max-w-6xl mx-auto px-6 ">
       <div
         class="flex flex-col space-x-0 space-y-14 md:flex-row md:space-x-14 md:space-y-0 justify-center items-center"
       >
-        <img
+        <img data-aos="fade-right"
           src="../assets/images/about.jpg"
           alt="about image"
           class="object-cover h-[400px] w-[450px]"
         />
 
-        <div class="flex flex-col space-y-6 text-center md:text-left max-w-xl">
+        <div data-aos="fade-left" class="flex flex-col space-y-6 text-center md:text-left max-w-xl">
           <h3 class="font-semibold text-2xl uppercase text-blue">About us</h3>
           <h2
             class="font-agdasima capitalize leading-[125%] text-white text-4xl md:text-5xl"
@@ -34,11 +34,15 @@
     </div>
     
     
-  </div>
+  </section>
 </template>
 
 <script>
-export default {};
+
+
+  export default {
+ 
+};
 </script>
 
 <style></style>

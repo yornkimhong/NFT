@@ -1,6 +1,6 @@
 <template>
-  <div class="container max-w-6xl mx-auto px-6 mt-32">
-    <div class="flex flex-col space-y-3 text-center md:text-left">
+  <section id="benefit" class="container max-w-6xl mx-auto px-6 pt-32">
+    <div data-aos="fade-right" class="flex flex-col space-y-3 text-center md:text-left">
       <h2 class="font-agdasima text-white text-5xl capitalize">
         why NFT’s is useful
       </h2>
@@ -8,7 +8,7 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-24 md:gap-4  mt-32">
-      <div
+      <div data-aos="flip-up"
         class="bg-dark h-[300px] rounded-lg flex flex-col space-y-4 items-center justify-center text-center px-4 relative"
         v-for="benefit in benefits"
         :key="benefit.id"
@@ -22,7 +22,7 @@
         
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
