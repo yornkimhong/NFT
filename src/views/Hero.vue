@@ -6,7 +6,7 @@
         class="flex flex-col md:flex-row items-center md:justify-between h-screen pt-10 space-y-20 md:space-y-0"
       >
         <div
-         
+         data-aos="fade-right"
           class="flex flex-col text-center md:text-left items-center md:items-start space-y-4 max-w-lg my-24"
         >
           <h1 class="font-agdasima text-white text-4xl md:text-5xl lg:text-6xl">

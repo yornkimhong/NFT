@@ -4,11 +4,15 @@
     class="fixed top-0 left-0 right-0 z-20 max-w-screen"
   >
     <nav
-      class="relative flex items-center py-3 max-w-6xl mx-auto px-6 justify-between font-bold text-white"
+      class="relative flex items-center py-4 max-w-6xl mx-auto px-6 justify-between font-bold text-white"
     >
       <!-- Logo -->
       <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <h1 class="font-lato text-2xl font-bold">Logo</h1>
+        <img
+          src="../assets/images/logo4.png"
+          alt="logo image"
+          class="object-cover h-10"
+        />
       </a>
 
       <!-- Menu for Desktop -->
@@ -16,22 +20,32 @@
         class="hidden font-roboto font-medium md:flex md:space-x-8 text-white"
       >
         <div class="inline-block">
-          <a href="#hero">Home</a>
+          <a :class="{ active: activeSection === 'hero' }" href="#hero">Home</a>
         </div>
         <div class="inline-block">
-          <a href="#about">About</a>
+          <a :class="{ active: activeSection === 'about' }" href="#about"
+            >About</a
+          >
         </div>
         <div class="inline-block">
-          <a href="#category">Category</a>
+          <a :class="{ active: activeSection === 'category' }" href="#category"
+            >Category</a
+          >
         </div>
         <div class="inline-block">
-          <a href="#collection">Collection</a>
+          <a
+            :class="{ active: activeSection === 'collection' }"
+            href="#collection"
+            >Collection</a
+          >
         </div>
         <div class="inline-block">
-          <a href="#benefit">Benefit</a>
+          <a :class="{ active: activeSection === 'benefit' }" href="#benefit"
+            >Benefit</a
+          >
         </div>
         <div class="inline-block">
-          <a href="#team">Team</a>
+          <a :class="{ active: activeSection === 'team' }" href="#team">Team</a>
         </div>
       </div>
 
@@ -63,28 +77,59 @@
     <div
       v-if="isMenuOpen"
       @click.self="toggleMenu"
-      class="fixed top-14 left-0 w-full min-h-screen z-10"
+      class="fixed top-0 left-0 w-full min-h-screen z-10"
     >
       <div
-        class="bg-lightBlue p-8 text-white font-alata flex flex-col items-center space-y-6"
+        class="bg-lightBlue p-8 text-white font-alata flex flex-col items-center space-y-6 pt-24"
       >
+        <div @click="toggleMenu" class="inline-block w-full text-primary">
+          <a
+            :class="{ active: activeSection === 'home' }"
+            class="w-full block"
+            href="#home"
+            >Home</a
+          >
+        </div>
+
         <div class="inline-block">
-          <a href="#hero">Home</a>
+          <a
+            @click="toggleMenu"
+            :class="{ active: activeSection === 'about' }"
+            href="#about"
+            >About</a
+          >
         </div>
         <div class="inline-block">
-          <a href="#about">About</a>
+          <a
+            @click="toggleMenu"
+            :class="{ active: activeSection === 'category' }"
+            href="#category"
+            >Category</a
+          >
         </div>
         <div class="inline-block">
-          <a href="#category">Category</a>
+          <a
+            @click="toggleMenu"
+            :class="{ active: activeSection === 'collection' }"
+            href="#collection"
+            >Collection</a
+          >
         </div>
         <div class="inline-block">
-          <a href="#collection">Collection</a>
+          <a
+            @click="toggleMenu"
+            :class="{ active: activeSection === 'benefit' }"
+            href="#benefit"
+            >Benefit</a
+          >
         </div>
         <div class="inline-block">
-          <a href="#benefit">Benefit</a>
-        </div>
-        <div class="inline-block">
-          <a href="#team">Team</a>
+          <a
+            @click="toggleMenu"
+            :class="{ active: activeSection === 'team' }"
+            href="#team"
+            >Team</a
+          >
         </div>
         <a href="#" class="w-full">
           <button
@@ -103,27 +148,81 @@ export default {
   data() {
     return {
       isMenuOpen: false,
-      isScrolled: false, // Flag to toggle navbar background
+      isScrolled: false,
+      activeSection: "",
     };
   },
   methods: {
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen; // Toggle the mobile menu visibility
+      this.isMenuOpen = !this.isMenuOpen;
     },
     handleScroll() {
-      this.isScrolled = window.scrollY > 30; // Use window.scrollY to check scroll position
+      this.isScrolled = window.scrollY > 30;
+    },
+    handleSectionIntersection(entries) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log(`Section in view: ${entry.target.id}`); // Debugging
+          this.activeSection = entry.target.id;
+        }
+      });
+    },
+
+    setUpObserver() {
+      const isSmallDevice = window.innerWidth < 768; // Check if device is small
+      const thresholdValue = isSmallDevice ? 0.3 : 0.5;
+
+      // Set up the observer with dynamic threshold
+      this.observer = new IntersectionObserver(this.handleSectionIntersection, {
+        threshold: thresholdValue, // Adjust threshold based on device size
+      });
+
+      // Observe sections
+      ["hero", "about", "category", "collection", "benefit", "team"].forEach(
+        (section) => {
+          const sectionElement = document.getElementById(section);
+          if (sectionElement) {
+            this.observer.observe(sectionElement);
+          }
+        }
+      );
     },
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll); // Attach the scroll listener
+    window.addEventListener("scroll", this.handleScroll);
+
+    this.setUpObserver();
+    // IntersectionObserver to track which section is in view
+    // this.observer = new IntersectionObserver(this.handleSectionIntersection, {
+    //   // threshold: 0.5, // Trigger when 50% of the section is visible
+    //    threshold: [0.3, 0.5],
+    // });
+
+    // // Start observing each section
+    // ["hero", "about", "category", "collection", "benefit", "team"].forEach(
+    //   (section) => {
+    //     this.observer.observe(document.getElementById(section));
+    //   }
+    // );
   },
   beforeUnmount() {
-    window.removeEventListener("scroll", this.handleScroll); // Clean up event listener on unmount
+    window.removeEventListener("scroll", this.handleScroll);
+    // if (this.observer) {
+    //   this.observer.disconnect();
+    // }
+    window.removeEventListener("resize", this.setUpObserver);
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   },
 };
 </script>
+<style>
+/* Add active class styles */
+.active {
+  color: #3c21b5;
+}
 
-<style scoped>
 .hamburger {
   cursor: pointer;
   width: 24px;

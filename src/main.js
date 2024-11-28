@@ -6,6 +6,6 @@ import "aos/dist/aos.css";
 
 createApp(App).mount("#app");
 AOS.init({
-  duration: 2500, // Animation duration
-  once: true, // If true, animation will only happen once
+  duration: 2000,
+  once: true, 
 });
