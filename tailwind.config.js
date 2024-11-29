@@ -25,7 +25,7 @@ export default {
       },
       fontFamily: {
         sans: ["Open Sans", "sans-serif"],
-        agdasima: ["Agdasima", "sans-serif"],
+        agdasima: ["Agdasima", "serif"],
       },
       fontWeight: {
         semibold: 600,

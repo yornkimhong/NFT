@@ -83,11 +83,7 @@
         class="bg-lightBlue p-8 text-white font-alata flex flex-col items-center space-y-6 pt-24"
       >
         <div @click="toggleMenu" class="inline-block">
-          <a
-            :class="{ active: activeSection === 'home' }"
-            href="#home"
-            >Home</a
-          >
+          <a :class="{ active: activeSection === 'hero' }" href="#hero">Home</a>
         </div>
 
         <div class="inline-block">
@@ -161,19 +157,18 @@ export default {
     handleSectionIntersection(entries) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log(`Section in view: ${entry.target.id}`); // Debugging
           this.activeSection = entry.target.id;
         }
       });
     },
 
     setUpObserver() {
-      const isSmallDevice = window.innerWidth < 768; // Check if device is small
+      const isSmallDevice = window.innerWidth < 768; 
       const thresholdValue = isSmallDevice ? 0.3 : 0.5;
 
-      // Set up the observer with dynamic threshold
+     
       this.observer = new IntersectionObserver(this.handleSectionIntersection, {
-        threshold: thresholdValue, // Adjust threshold based on device size
+        threshold: thresholdValue, 
       });
 
       // Observe sections
@@ -191,24 +186,10 @@ export default {
     window.addEventListener("scroll", this.handleScroll);
 
     this.setUpObserver();
-    // IntersectionObserver to track which section is in view
-    // this.observer = new IntersectionObserver(this.handleSectionIntersection, {
-    //   // threshold: 0.5, // Trigger when 50% of the section is visible
-    //    threshold: [0.3, 0.5],
-    // });
-
-    // // Start observing each section
-    // ["hero", "about", "category", "collection", "benefit", "team"].forEach(
-    //   (section) => {
-    //     this.observer.observe(document.getElementById(section));
-    //   }
-    // );
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
-    // if (this.observer) {
-    //   this.observer.disconnect();
-    // }
+
     window.removeEventListener("resize", this.setUpObserver);
     if (this.observer) {
       this.observer.disconnect();
@@ -220,6 +201,7 @@ export default {
 /* Add active class styles */
 .active {
   color: #3c21b5;
+  font-weight: 600;
 }
 
 .hamburger {

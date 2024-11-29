@@ -21,12 +21,12 @@
 
           <div class="flex space-x-3">
             <button
-              class="py-3 px-6 rounded-md font-semibold uppercase bg-gradientSecondary text-white"
+              class="py-3 px-6 rounded-md font-semibold uppercase bg-gradientSecondary text-white "
             >
               create
             </button>
             <button
-              class="py-3 px-6 rounded-md font-semibold uppercase border-2 border-white text-white hover:bg-gradientPrimary"
+              class="py-3 px-6 rounded-md font-semibold uppercase border-2 border-white text-white hover:bg-gradientPrimary hover:border-transparent transition-all duration-100 ease-in"
             >
               explore
             </button>
