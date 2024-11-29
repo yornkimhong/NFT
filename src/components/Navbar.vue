@@ -82,10 +82,9 @@
       <div
         class="bg-lightBlue p-8 text-white font-alata flex flex-col items-center space-y-6 pt-24"
       >
-        <div @click="toggleMenu" class="inline-block w-full text-primary">
+        <div @click="toggleMenu" class="inline-block">
           <a
             :class="{ active: activeSection === 'home' }"
-            class="w-full block"
             href="#home"
             >Home</a
           >
